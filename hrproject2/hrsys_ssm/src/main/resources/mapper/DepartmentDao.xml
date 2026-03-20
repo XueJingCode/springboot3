@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 必须对应接口的全限定名 -->
+<mapper namespace="com.alan.hrsys.dao.DepartmentDao">
+
+    <!-- 结果映射：将数据库列映射到 Department 实体属性 -->
+    <!-- 假设数据库表名为 department，字段为 id, name, number -->
+    <resultMap id="BaseResultMap" type="com.alan.hrsys.entity.Department">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="number" column="number"/>
+    </resultMap>
+
+    <!-- 查询所有部门 -->
+    <select id="search" resultMap="BaseResultMap">
+        SELECT id, name, number
+        FROM department
+        ORDER BY id
+    </select>
+
+    <!-- 根据ID查询部门 -->
+    <select id="searchById" resultMap="BaseResultMap">
+        SELECT id, name, number
+        FROM department
+        WHERE id = #{id}
+    </select>
+
+    <!-- 新增部门 -->
+    <!-- useGeneratedKeys="true" keyProperty="id": 获取数据库自增的主键回填到对象中 -->
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO department (name, number)
+        VALUES (#{name}, #{number})
+    </insert>
+
+    <!-- 更新部门 -->
+    <update id="update">
+        UPDATE department
+        SET name = #{name},
+            number = #{number}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除部门 -->
+    <delete id="delete">
+        DELETE FROM department WHERE id = #{id}
+    </delete>
+
+</mapper>
