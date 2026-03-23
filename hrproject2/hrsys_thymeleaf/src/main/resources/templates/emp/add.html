@@ -12,6 +12,23 @@
             <input type="text" placeholder="请输入编号" name="number">
         </div>
         <div class="align">
+            <label>姓名</label>
+            <input type="text" placeholder="请输入姓名" name="name">
+        </div>
+        <div class="align">
+            <label>性别</label>
+        </div>
+        <div class="align">
+            <input type="radio" name="sex" value="1">男
+            <input type="radio" name="sex" value="0">女</input>
+            </input>
+        </div>
+        <div class="align">
+            <label>年龄</label>
+            <input type="text" placeholder="请输入年龄" name="age"></input>
+        </div>
+        </div>
+        <div class="align">
             <label>部门</label>
             <select name="dep.id">
                 <option th:each="dep:${depList}" th:text="${dep.name}" th:value="${dep.id}"></option>

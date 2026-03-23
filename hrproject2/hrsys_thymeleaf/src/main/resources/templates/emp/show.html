@@ -12,11 +12,24 @@
             <input type="text" name="number" placeholder="编号" th:value="${c.number}" />
         </div>
         <div class="align">
+            <input type="text" name="name" placeholder="姓名" th:value="${c.name}" />
+        </div>
+        <div class="align">
             <select name="gender">
                 <option value="">性别</option>
                 <option value="男" th:selected="${c.gender == '男'}">男</option>
                 <option value="女" th:selected="${c.gender == '女'}">女</option>
             </select>
+        </div>
+        <div class="align">
+            <select name="dep">
+                <option value="">部门</option>
+                <option value="1" th:selected="${c.dep == 1}">部门1</option>
+                <option value="2" th:selected="${c.dep == 2}">部门2</option>
+            </select>
+        </div>
+        <div class="align">
+            <input type="submit" value="搜索" />
         </div>
         <!--省略部分代码，完整代码参考项目-->
     </form>
@@ -24,11 +37,10 @@
     <table id="data">
         <tr>
             <th>编号</th>
-            <th>名字</th>
+            <th>姓名</th>
             <th>性别</th>
             <th>年龄</th>
             <th>部门</th>
-            <th>操作</th>
         </tr>
         <tr class="data" th:each="emp:${list}" th:data-id="${emp.id}">
             <td th:text="${emp.number}"></td>
@@ -36,14 +48,12 @@
             <td th:text="${emp.gender}"></td>
             <td th:text="${emp.age}"></td>
             <td th:text="${emp.dep==null}?'':${emp.dep.name}"></td>
-            <td>
+        </tr>
+    </table>
                 <!--操作按钮-->
                 <button type="button" id="add">新增</button>
                 <button type="button" id="update">修改</button>
                 <button type="button" id="delete">删除</button>
-            </td>
-        </tr>
-    </table>
 </div>
 </body>
 </html>
