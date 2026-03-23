@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="container">
+    <!--查询表单-->
+    <form id="search" action="search" method="post">
+        <div class="align">
+            <input type="text" name="number" placeholder="编号" th:value="${c.number}" />
+        </div>
+        <div class="align">
+            <select name="gender">
+                <option value="">性别</option>
+                <option value="男" th:selected="${c.gender == '男'}">男</option>
+                <option value="女" th:selected="${c.gender == '女'}">女</option>
+            </select>
+        </div>
+        <!--省略部分代码，完整代码参考项目-->
+    </form>
+    <!--数据表格-->
+    <table id="data">
+        <tr>
+            <th>编号</th>
+            <th>名字</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>部门</th>
+            <th>操作</th>
+        </tr>
+        <tr class="data" th:each="emp:${list}" th:data-id="${emp.id}">
+            <td th:text="${emp.number}"></td>
+            <td th:text="${emp.name}"></td>
+            <td th:text="${emp.gender}"></td>
+            <td th:text="${emp.age}"></td>
+            <td th:text="${emp.dep==null}?'':${emp.dep.name}"></td>
+            <td>
+                <!--操作按钮-->
+                <button type="button" id="add">新增</button>
+                <button type="button" id="update">修改</button>
+                <button type="button" id="delete">删除</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
